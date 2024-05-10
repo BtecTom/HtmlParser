@@ -1,0 +1,209 @@
+{
+  "definitions": {
+    "InfluentialRankings": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "Ranker": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ListName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Position": {
+          "type": "integer"
+        },
+        "Year": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "Ranker",
+        "ListName",
+        "Position",
+        "Year"
+      ]
+    },
+    "Person": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "Age": {
+          "type": "integer"
+        },
+        "Residence": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Citizenship": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Education": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "SourceOfWealth": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "Valuations": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Valuation"
+          }
+        },
+        "CompanyPosition": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "CompanyName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Children": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "MaritalStatus": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "UnstructuredData": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "RelatedParties": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "InfluentialRankings": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/InfluentialRankings"
+          }
+        }
+      },
+      "required": [
+        "Age",
+        "Residence",
+        "Citizenship",
+        "Education",
+        "SourceOfWealth",
+        "Valuations",
+        "CompanyPosition",
+        "CompanyName",
+        "Children",
+        "MaritalStatus",
+        "UnstructuredData",
+        "RelatedParties",
+        "InfluentialRankings"
+      ]
+    },
+    "Valuation": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "Date": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Value": {
+          "type": "number"
+        },
+        "Currency": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "Date",
+        "Value",
+        "Currency"
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "ReportSubjectName": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "EntityType": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Person": {
+      "$ref": "#/definitions/Person"
+    }
+  },
+  "required": [
+    "ReportSubjectName",
+    "EntityType",
+    "Person"
+  ]
+}
