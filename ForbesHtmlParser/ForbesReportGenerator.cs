@@ -45,11 +45,12 @@ namespace ForbesHtmlParser
 
             if (nameElement != null)
             {
-                var cleanInnerText = nameElement.InnerText.Replace("\n", "").Trim();
+                var cleanInnerText = nameElement.InnerText.Clean();
+
                 if (cleanInnerText ==
-                    nameElement.Attributes.FirstOrDefault(a => a.Name == "data-profile-name")?.Value)
+                    nameElement.Attributes.FirstOrDefault(a => a.Name == "data-profile-name")?.Value.Clean())
                 {
-                    return cleanInnerText.Replace("&amp;", "and");
+                    return cleanInnerText;
                 }
             }
 

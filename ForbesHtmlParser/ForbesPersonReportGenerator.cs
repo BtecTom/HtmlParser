@@ -138,7 +138,7 @@ namespace ForbesHtmlParser
                 {
                     return base.GetUnstructuredData(htmlDoc);
                 }
-                unstructuredData.Add(text.Replace("\n                 ", ""));
+                unstructuredData.Add(text.Clean());
             }
 
             return unstructuredData;
@@ -195,7 +195,7 @@ namespace ForbesHtmlParser
                 }
 
                 // the second div contains the List name and in brackets the year of the rank
-                var listAndYear = childDivs[1].InnerText.Replace("\n", "").Replace(" ", "");
+                var listAndYear = childDivs[1].InnerText.Clean();
                 var split = listAndYear.TrimEnd(')').Split("(");
                 
                 // if this splitting failed, the format of this field has changed
@@ -306,7 +306,7 @@ namespace ForbesHtmlParser
                 return null;
             }
 
-            return element.InnerText.Replace("\n                     ", "");
+            return element.InnerText.Clean();
         }
 
         #endregion
