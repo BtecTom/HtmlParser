@@ -1,9 +1,8 @@
-﻿namespace Models.Person
+﻿namespace Models.Person;
+
+public class Valuation
 {
-    public class Valuation
-    {
-        public required string Date;
-        public required double Value;
-        public required string Currency;
-    }
+    public required string Date;
+    public required double Value;
+    public required string Currency;
 }

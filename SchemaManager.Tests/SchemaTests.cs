@@ -2,63 +2,62 @@ using Models;
 using Models.Person;
 using Newtonsoft.Json.Schema;
 
-namespace SchemaManager.Tests
+namespace SchemaManager.Tests;
+
+public class GenerateSchemaTest
 {
-    public class GenerateSchemaTest
+    private readonly JSchema _schema = Schema.GetLatestSchema();
+
+    [SetUp]
+    public void Setup()
     {
-        private readonly JSchema _schema = Schema.GetLatestSchema();
+    }
 
-        [SetUp]
-        public void Setup()
+    [Test]
+    public void GenerateSchemaTest_Pass()
+    {
+        var report = new Report
         {
-        }
-
-        [Test]
-        public void GenerateSchemaTest_Pass()
-        {
-            var report = new Report
+            ReportSubjectName = "test", 
+            EntityType = nameof(Person),
+            Person = new Person
             {
-                ReportSubjectName = "test", 
-                EntityType = nameof(Person),
-                Person = new Person
-                {
-                    Age = 20,
-                    Citizenship = "UK",
-                    Education = "none",
-                    MaritalStatus = "Single",
-                    Residence = "Bedford",
-                    SourceOfWealth = ["self-made"],
-                    Valuations = [new Valuation{Date = "test", Value = 100, Currency = "$"}]
-                }
-            };
-            var json = Schema.ReportToJson(report);
+                Age = 20,
+                Citizenship = "UK",
+                Education = "none",
+                MaritalStatus = "Single",
+                Residence = "Bedford",
+                SourceOfWealth = ["self-made"],
+                Valuations = [new Valuation{Date = "test", Value = 100, Currency = "$"}]
+            }
+        };
+        var json = Schema.ReportToJson(report);
 
-            Assert.That(Schema.Validate(_schema, json), Is.True);
-        }
+        Assert.That(Schema.Validate(_schema, json), Is.True);
+    }
 
-        [Test]
-        public void GenerateSchemaTest_Fail()
+    [Test]
+    public void GenerateSchemaTest_Fail()
+    {
+        var report = new Report
         {
-            var report = new Report
+            ReportSubjectName = "test",
+            EntityType = nameof(Person),
+            Person = new Person
             {
-                ReportSubjectName = "test",
-                EntityType = nameof(Person),
-                Person = new Person
-                {
-                    Age = 20,
-                    Citizenship = "UK",
-                    Education = "none",
-                    MaritalStatus = "Single",
-                    Residence = "Bedford",
-                    SourceOfWealth = ["self-made"],
-                    Valuations = [new Valuation{Date = "test", Value = 100, Currency = "$"}]
-                }
-            };
-            var json = Schema.ReportToJson(report);
+                Age = 20,
+                Citizenship = "UK",
+                Education = "none",
+                MaritalStatus = "Single",
+                Residence = "Bedford",
+                SourceOfWealth = ["self-made"],
+                Valuations = [new Valuation{Date = "test", Value = 100, Currency = "$"}]
+            }
+        };
+        var json = Schema.ReportToJson(report);
 
-            json = json.Replace("Age", "InvalidProperty");
+        json = json.Replace("Age", "InvalidProperty");
 
-            Assert.That(Schema.Validate(_schema, json), Is.False);
-        }
+        Assert.That(Schema.Validate(_schema, json), Is.False);
     }
 }
